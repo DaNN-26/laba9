@@ -8,18 +8,33 @@ public class Main {
                 new Student("Черентаев Никита Михайлович", 2021, "ул. Вяземского", "+79062231514", 2, "Программирование")
                 
         };
-        Student.DisplayFIO(students);
+        System.out.println("ФИО всех студентов:");
+        for(Student student : students) {
+            System.out.println(student.getFIO());
+        }
         System.out.println();
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите название факультета: ");
         String input = scanner.nextLine();
-        Student.DisplayOnFaculty(input, students);
+        for (Student student : students){
+            if(student.getFaculty().equals(input)) {
+                System.out.printf("ФИО: %s\n", student.getFIO());
+                System.out.printf("Факультет: %s\n", student.getFaculty());
+            }
+        }
         System.out.println();
 
         System.out.print("Введите год: ");
         int input2 = scanner.nextInt();
-        Student.DisplayAfterYear(input2, students);
+        for (Student student : students)
+        {
+            if(student.getDateOfReceipt() > input2)
+            {
+                System.out.printf("ФИО: %s\n", student.getFIO());
+                System.out.printf("Год поступления: %s\n", student.getDateOfReceipt());
+            }
+        }
     }
 }
 class Student
@@ -51,6 +66,10 @@ class Student
     {
         this.DateOfReceipt = DateOfReceipt;
     }
+    public int getDateOfReceipt()
+    {
+        return this.DateOfReceipt;
+    }
     public String getAddress()
     {
         return this.Address;
@@ -70,32 +89,5 @@ class Student
     public String getFaculty()
     {
         return this.Faculty;
-    }
-    public static void DisplayFIO(Student students [])
-    {
-        System.out.println("ФИО всех студентов:");
-        for(Student student : students) {
-            System.out.println(student.FIO);
-        }
-    }
-    public static void DisplayOnFaculty(String fac, Student students [])
-    {
-            for (Student student : students){
-                if(student.Faculty.equals(fac)) {
-                    System.out.printf("ФИО: %s\n", student.FIO);
-                    System.out.printf("Факультет: %s\n", student.Faculty);
-                }
-            }
-    }
-    public static void DisplayAfterYear(int inputYear, Student students [])
-    {
-        for (Student student : students)
-        {
-            if(student.DateOfReceipt > inputYear)
-            {
-                System.out.printf("ФИО: %s\n", student.FIO);
-                System.out.printf("Год поступления: %s\n", student.DateOfReceipt);
-            }
-        }
     }
 }
